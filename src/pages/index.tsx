@@ -24,8 +24,19 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home() {
-  return <h1>New React BLOG</h1>;
+export default function Home(): JSX.Element {
+  return (
+    <main className={styles.contentContainer}>
+      <article className={styles.postContainer}>
+        <h3>titulo do post</h3>
+        <p>texto do post</p>
+      </article>
+      <article className={styles.postContainer}>
+        <h3>titulo do post</h3>
+        <p>texto do post</p>
+      </article>
+    </main>
+  );
 }
 
 // export const getStaticProps = async () => {

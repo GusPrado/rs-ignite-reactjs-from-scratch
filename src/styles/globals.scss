@@ -4,7 +4,19 @@
   padding: 0;
 }
 
-html,
-body {
+:root {
+  --background: #282c34;
+  --highlight: #ff57b2;
+  --heading: #f8f8f8;
+  --info: #bbbbbb;
+  --body: #d7d7d7;
+}
+
+html {
   font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--body);
 }
