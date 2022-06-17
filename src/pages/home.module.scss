@@ -4,4 +4,22 @@
 
 .postContainer {
   margin-bottom: 3rem;
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--heading);
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 18px;
+    color: var(--body);
+  }
+
+  section {
+    display: flex;
+    font-size: 1rem;
+  }
 }

@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
-import { RichText } from 'prismic-dom';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
@@ -39,6 +40,8 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
           </section>
         </article>
       ))}
+
+      {next_page && <button type="button">Carregar mais posts</button>}
     </main>
   );
 }
@@ -47,14 +50,16 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
   const postsResponse = await prismic.getByType('posts');
 
-  console.log(JSON.stringify(postsResponse, null, 2));
-
   const { next_page } = postsResponse;
 
   const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: post.first_publication_date,
+      first_publication_date: format(
+        new Date(post.first_publication_date),
+        'dd MMM yyyy',
+        { locale: ptBR }
+      ),
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
@@ -66,7 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       postsPagination: {
-        next_page,
+        next_page: true,
         results: posts,
       },
     },
